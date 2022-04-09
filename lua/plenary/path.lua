@@ -18,6 +18,12 @@ local S_IF = {
 local path = {}
 path.home = vim.loop.os_homedir()
 
+-- remove trailing slash from homedir if any
+if path.home:sub(-1) == path.sep then
+  path.home = path.home:sub(1,-2)
+end
+
+
 path.sep = (function()
   if jit then
     local os = string.lower(jit.os)
